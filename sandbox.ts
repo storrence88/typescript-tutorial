@@ -52,7 +52,7 @@ console.log(typedCircumference(45));
 // Working with Arrays and Objects
 // ===============================
 
-// --- Arrays ---
+// ---- Arrays ----
 // Declare an array with all string types
 let names = ['Steven', 'Meredith', 'Tiffany', 'Jose'];
 
@@ -91,3 +91,41 @@ mixed.push(100);
 // We can also change any position inside the mixed array with another string or number
 mixed[2] = '55 is the mike';
 mixed[0] = 0;
+
+// ---- Objects ----
+
+// When we declare an object in TS, the keys act just like normal variables and can't change their type
+let developer = {
+  name: 'steven',
+  experience: 2,
+  age: 31
+};
+
+// Both of these actions are fine
+developer.name = 'Juan';
+developer.age = 27;
+
+// This will not work because the type of age should be a number, not a string
+// developer.age = '27'; // Type 'string' is not assignable to type 'number'
+
+// We also can't add new properties to the developer object
+// developer.languages = ['ruby', 'javascript', 'python']; // Property 'languages' does not exist on type '{ name: string; experience: number; age: number; }'
+
+// If I wanted to change the values in my object, I can but the new object MUST match the structure of the original object
+//developer = ''; // Type 'string' is not assignable to type '{ name: string; experience: number; age: number; }'
+
+// I also can't change the type of a property. I can only change it's value.
+// developer = {
+//   name: 'Mike',
+//   experience: 2,
+//   age: '44'
+// }; // Type 'string' is not assignable to type 'number'. The expected type comes from property 'age' which is declared here on type '{ name: string; experience: number; age: number; }'
+
+// I also can't add new properties to the object. It has to match the structure of the original object exactly, but the values can change as long as the types match
+// developer = {
+//   name: 'Frank',
+//   experience: 15,
+//   age: 55,
+//   languages: ['ruby', 'c++']
+// }; // Type '{ name: string; experience: number; age: number; languages: string[]; }' is not assignable to type '{ name: string; experience: number; age: number; }'
+// Object literal may only specify known properties, and 'languages' does not exist in type '{ name: string; experience: number; age: number; }'
