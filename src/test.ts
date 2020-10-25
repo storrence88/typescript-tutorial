@@ -38,3 +38,29 @@ let result = minus(10, 7);
 const multiply = (a: number, b: number): void => {
   console.log(a * b);
 };
+
+// ============
+// Type Aliases
+// ============
+
+// Sometimes declaring types explicitly can get a little verbose
+// const logDetails = (uuid: string | number, item: string) => {
+//   console.log(`${item} has a uuid of ${uuid}`);
+// };
+
+// or even with an object
+// const greeter = (user: { name: string; uuid: string | number }) => {
+//   console.log(`${user.name} says hello!`);
+// };
+
+// We can set up aliases for the types and use them in our code
+type StrOrNum = string | number;
+type ObjWithName = { name: string; uid: StrOrNum };
+
+const logDetails = (uuid: StrOrNum, item: string) => {
+  console.log(`${item} has a uuid of ${uuid}`);
+};
+
+const greeter = (user: ObjWithName) => {
+  console.log(`${user.name} says hello!`);
+};
