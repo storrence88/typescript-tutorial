@@ -130,3 +130,20 @@ console.log(mixedArr);
 // For instance if we were using a uuid which could be a number or a string
 // We don't need to add parenthese if the union is not in front of an array
 var uuid;
+uuid = '123';
+uuid = 123;
+// ---- Object Types ----
+// We can ensure that a variable is set to an object type by doing this
+var object;
+// Won't work because a string is not an object
+// object = ''; // Type 'string' is not assignable to type 'object'.
+// This will technically work since in JS, an array is considered to be an object...
+// object = [];
+// We can be even more specific when it comes to objects and specify the property types as well
+var typedObject;
+typedObject = {
+    color: 'yellow',
+    nickName: 'Stevo',
+    isOffline: false,
+    population: 123
+};
