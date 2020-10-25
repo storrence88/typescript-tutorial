@@ -29,7 +29,7 @@ hasBlondeHair = true;
 // ======================================================================
 
 // Function WITHOUT explicit parameter type defined
-const circumference = (diameter) => {
+const circumference = (diameter: any) => {
   return diameter * Math.PI;
 };
 
