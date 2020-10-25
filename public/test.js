@@ -32,3 +32,9 @@ var result = minus(10, 7);
 var multiply = function (a, b) {
     console.log(a * b);
 };
+var logDetails = function (uuid, item) {
+    console.log(item + " has a uuid of " + uuid);
+};
+var greeter = function (user) {
+    console.log(user.name + " says hello!");
+};
