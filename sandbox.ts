@@ -200,3 +200,32 @@ typedObject = {
   isOffline: false,
   population: 123
 };
+
+// ======================
+// The Dynamic Type (Any)
+// ======================
+
+// This allows you to set any type (string, number, boolean, array, object), and in the future change the variable type
+let userAge: any = 25;
+userAge = false;
+userAge = { something: 'this is a string' };
+console.log(userAge);
+
+// Using the any type removes the benifits of using Typescript in the first place
+// There are no errors and no notifications from the editor
+// Can be useful if we don't know the type
+
+// ----- Any Type with Arrays -----
+let mixedAnyArr: any[] = [];
+mixedAnyArr.push(22);
+mixedAnyArr.push('Some string');
+mixedAnyArr.push([false, 'green']);
+console.log(mixedAnyArr);
+
+// ----- Any Type with Objects -----
+let ninja: { ninjaName: any; ninjaAge: any };
+ninja = {
+  ninjaName: 123,
+  ninjaAge: '44'
+};
+console.log(ninja);
