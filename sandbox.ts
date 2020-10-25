@@ -129,3 +129,52 @@ developer.age = 27;
 //   languages: ['ruby', 'c++']
 // }; // Type '{ name: string; experience: number; age: number; languages: string[]; }' is not assignable to type '{ name: string; experience: number; age: number; }'
 // Object literal may only specify known properties, and 'languages' does not exist in type '{ name: string; experience: number; age: number; }'
+
+// ========================
+// Explicit and Union Types
+// ========================
+
+// Typescript automatically infers the variable type based on the value we give it
+// However, sometimes we want to initialize a variable without giving it a value
+
+// ---- Explicit Variable Types ----
+let firstName: string;
+let lastName: string;
+let num: number;
+let isLoggedIn: boolean;
+
+// If we later want to set a value, we can only set values that match the type we established above
+
+// Works fine
+firstName = 'Steve';
+
+// Doesn't work and won't compile
+// lastName = 32; //Type 'number' is not assignable to type 'string'.
+
+// ---- Explicit Array Types ----
+
+// Set a string array type
+let strArr: string[];
+// Set a number array type
+let numArr: number[];
+
+// Sometimes we want to set an array variable equal to an empty array so we can use methods like .push()
+// If we try to use the .push() method on an uninitialized variable, you'll get a "cannot read property push of undefined" error
+
+let emptyStrArr: string[] = [];
+emptyStrArr.push('Scout');
+
+// ---- Union Types ----
+// If we want to create an array with mixed types, we can use a union type
+
+let mixedArr: (string | number | boolean)[] = [];
+mixedArr.push('Kuvra');
+mixedArr.push(44);
+mixedArr.push(true);
+console.log(mixedArr);
+
+// Union types can also be used on normal variables
+// For instance if we were using a uuid which could be a number or a string
+// We don't need to add parenthese if the union is not in front of an array
+
+let uuid: string | number;
