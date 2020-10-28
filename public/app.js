@@ -38,3 +38,34 @@ form.addEventListener('submit', function (event) {
     console.log("Details: " + details.value);
     console.log("Amount: " + amount.valueAsNumber);
 });
+// =====================
+// Classes in Typescript
+// =====================
+var Invoice = /** @class */ (function () {
+    function Invoice(client, details, amount) {
+        this.client = client;
+        this.details = details;
+        this.amount = amount;
+    }
+    Invoice.prototype.format = function () {
+        return this.client + " owes $" + this.amount + " for " + this.details + ".";
+    };
+    return Invoice;
+}());
+var invoice1 = new Invoice('Steve', 'Work on website', 200);
+var invoice2 = new Invoice('Kuvra', 'Work on lunch', 300);
+console.log(invoice1, invoice2);
+// If we wanted to collect all of our invoices into an array,
+// we can ensure that only Invoice class objects are allowed in the array
+var invoices = [];
+// This will not work because we are pushing a string into the invoices array
+// invoices.push('hello'); // Argument of type 'string' is not assignable to parameter of type 'Invoice'.
+var invoice3 = new Invoice('Scout', 'Work on lunch', 150);
+invoices.push(invoice1);
+invoices.push(invoice2);
+invoices.push(invoice3);
+console.log(invoices);
+// If we decide to change the values in the object later, our established types still hold true
+invoice1.client = 'Mere';
+invoice2.amount = 500;
+console.log(invoices);
