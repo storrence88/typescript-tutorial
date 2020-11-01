@@ -69,3 +69,30 @@ console.log(invoices);
 invoice1.client = 'Mere';
 invoice2.amount = 500;
 console.log(invoices);
+//
+// Public, Private, and Readonly Class Modifiers
+//
+// By default, all attributes in a class are public
+// This means they can be read and modified from either inside or outside of the class
+var Person = /** @class */ (function () {
+    function Person(firstName, lastName, age, canDrink) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.canDrink = canDrink;
+    }
+    Person.prototype.fullName = function () {
+        return this.firstName + " " + this.lastName;
+    };
+    Person.prototype.format = function () {
+        // We can't change the value of this.canDrink because the property is set to readonly
+        // this.canDrink = false; // Cannot assign to 'canDrink' because it is a read-only property.
+        return this.fullName() + " " + (this.age >= 21 ? 'can drink' : "can't drink") + "!";
+    };
+    return Person;
+}());
+var steve = new Person('Steve', 'Torrence', 31, true);
+// If we try to call the private method fullName() outside of the class, we get an error
+// It can only be used inside of the class, like inside of the format() method
+// console.log(steve.fullName()); // Property 'fullName' is private and only accessible within class 'Person'.
+console.log(steve.format());
