@@ -101,17 +101,18 @@ console.log(invoices);
 // This means they can be read and modified from either inside or outside of the class
 
 class Person {
-  public firstName: string;
-  public lastName: string;
-  private age: number;
-  readonly canDrink: boolean;
+  // When using class modifiers, we can refactor the attributes to be shorter
+  // public firstName: string;
+  // public lastName: string;
+  // private age: number;
+  // readonly canDrink: boolean;
 
-  constructor(firstName: string, lastName: string, age: number, canDrink: boolean) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.canDrink = canDrink;
-  }
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    private age: number,
+    readonly canDrink: boolean
+  ) {}
 
   private fullName() {
     return `${this.firstName} ${this.lastName}`;
