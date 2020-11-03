@@ -1,7 +1,7 @@
 "use strict";
-var person = 'Steven';
-var age = 31;
-var hasBlondeHair = false;
+let person = 'Steven';
+let age = 31;
+let hasBlondeHair = false;
 // =====================================================================
 // In typescript, we can change the value of a variable but not the type
 // =====================================================================
@@ -21,13 +21,13 @@ hasBlondeHair = true;
 // In typescript, we can define the type expected for function parameters
 // ======================================================================
 // Function WITHOUT explicit parameter type defined
-var circumference = function (diameter) {
+const circumference = (diameter) => {
     return diameter * Math.PI;
 };
 // Right now I could pass any value into the circumference method even if it doesn't make sense
 console.log(circumference('hello')); // NaN
 // Function WITH explicit argument typed defined
-var typedCircumference = function (diameter) {
+const typedCircumference = (diameter) => {
     return diameter * Math.PI;
 };
 // Our editor will point out the error if we try and pass in a value other than the type defined
@@ -40,7 +40,7 @@ console.log(typedCircumference(45));
 // ===============================
 // ---- Arrays ----
 // Declare an array with all string types
-var names = ['Steven', 'Meredith', 'Tiffany', 'Jose'];
+let names = ['Steven', 'Meredith', 'Tiffany', 'Jose'];
 // This works because we are pushing a string value into the array of strings
 names.push('Murphy');
 // This doesn't work and typescript won't compile
@@ -48,7 +48,7 @@ names.push('Murphy');
 // Typescript won't even allow us to change a current value with something other than a string
 // names[0] = false; // Type 'boolean' is not assignable to type 'string'
 // Declare an array with all number types
-var numbers = [10, 20, 30, 40, 50];
+let numbers = [10, 20, 30, 40, 50];
 // Pushing a number value is fine
 numbers.push(60);
 numbers.unshift(0);
@@ -57,7 +57,7 @@ numbers.unshift(0);
 // Typescript won't even allow us to change a current value with something other than a number
 // numbers[1] = true; // Type 'boolean' is not assignable to type 'number'
 // Declare an array with mixed values
-var mixed = ['blue', 42, 'blue', 42, 'hut!'];
+let mixed = ['blue', 42, 'blue', 42, 'hut!'];
 // This works
 mixed.push('completion');
 mixed.push(100);
@@ -68,7 +68,7 @@ mixed[2] = '55 is the mike';
 mixed[0] = 0;
 // ---- Objects ----
 // When we declare an object in TS, the keys act just like normal variables and can't change their type
-var developer = {
+let developer = {
     name: 'steven',
     experience: 2,
     age: 31
@@ -102,10 +102,10 @@ developer.age = 27;
 // Typescript automatically infers the variable type based on the value we give it
 // However, sometimes we want to initialize a variable without giving it a value
 // ---- Explicit Variable Types ----
-var firstName;
-var lastName;
-var num;
-var isLoggedIn;
+let firstName;
+let lastName;
+let num;
+let isLoggedIn;
 // If we later want to set a value, we can only set values that match the type we established above
 // Works fine
 firstName = 'Steve';
@@ -113,16 +113,16 @@ firstName = 'Steve';
 // lastName = 32; //Type 'number' is not assignable to type 'string'.
 // ---- Explicit Array Types ----
 // Set a string array type
-var strArr;
+let strArr;
 // Set a number array type
-var numArr;
+let numArr;
 // Sometimes we want to set an array variable equal to an empty array so we can use methods like .push()
 // If we try to use the .push() method on an uninitialized variable, you'll get a "cannot read property push of undefined" error
-var emptyStrArr = [];
+let emptyStrArr = [];
 emptyStrArr.push('Scout');
 // ---- Union Types ----
 // If we want to create an array with mixed types, we can use a union type
-var mixedArr = [];
+let mixedArr = [];
 mixedArr.push('Kuvra');
 mixedArr.push(44);
 mixedArr.push(true);
@@ -130,18 +130,18 @@ console.log(mixedArr);
 // Union types can also be used on normal variables
 // For instance if we were using a uuid which could be a number or a string
 // We don't need to add parenthese if the union is not in front of an array
-var uuid;
+let uuid;
 uuid = '123';
 uuid = 123;
 // ---- Object Types ----
 // We can ensure that a variable is set to an object type by doing this
-var object;
+let object;
 // Won't work because a string is not an object
 // object = ''; // Type 'string' is not assignable to type 'object'.
 // This will technically work since in JS, an array is considered to be an object...
 // object = [];
 // We can be even more specific when it comes to objects and specify the property types as well
-var typedObject;
+let typedObject;
 typedObject = {
     color: 'yellow',
     nickName: 'Stevo',
@@ -152,7 +152,7 @@ typedObject = {
 // The Dynamic Type (Any)
 // ======================
 // This allows you to set any type (string, number, boolean, array, object), and in the future change the variable type
-var userAge = 25;
+let userAge = 25;
 userAge = false;
 userAge = { something: 'this is a string' };
 console.log(userAge);
@@ -160,13 +160,13 @@ console.log(userAge);
 // There are no errors and no notifications from the editor
 // Can be useful if we don't know the type
 // ----- Any Type with Arrays -----
-var mixedAnyArr = [];
+let mixedAnyArr = [];
 mixedAnyArr.push(22);
 mixedAnyArr.push('Some string');
 mixedAnyArr.push([false, 'green']);
 console.log(mixedAnyArr);
 // ----- Any Type with Objects -----
-var ninja;
+let ninja;
 ninja = {
     ninjaName: 123,
     ninjaAge: '44'
