@@ -1,3 +1,5 @@
+import { Invoice } from './classes/Invoice.js';
+
 // ================
 // DOM Manipulation
 // ================
@@ -51,23 +53,6 @@ form.addEventListener('submit', (event: Event) => {
 // =====================
 // Classes in Typescript
 // =====================
-
-class Invoice {
-  client: string;
-  details: string;
-  amount: number;
-
-  constructor(client: string, details: string, amount: number) {
-    this.client = client;
-    this.details = details;
-    this.amount = amount;
-  }
-
-  format() {
-    return `${this.client} owes $${this.amount} for ${this.details}.`;
-  }
-}
-
 const invoice1 = new Invoice('Steve', 'Work on website', 200);
 const invoice2 = new Invoice('Kuvra', 'Work on lunch', 300);
 

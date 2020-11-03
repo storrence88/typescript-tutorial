@@ -1,8 +1,8 @@
-"use strict";
+import { Invoice } from './classes/Invoice.js';
 // ================
 // DOM Manipulation
 // ================
-var anchor = document.querySelector('a');
+const anchor = document.querySelector('a');
 // We get a warning when doing this because it's possible the anchor object is null
 // In that case, we wouldn't be able to call .href on it
 // console.log(anchor.href); // Object is possibly 'null'.
@@ -24,43 +24,32 @@ console.log(anchor === null || anchor === void 0 ? void 0 : anchor.href);
 // This changes the type to Element because a class can belong to any element
 // TS doesn't know for sure if it's a form element
 // To solve this issue, we can use Typecasting to tell TS it is a form element
-var form = document.querySelector('.new-item-form');
+const form = document.querySelector('.new-item-form');
 console.log(form.children);
 // Form Inputs
-var type = document.querySelector('#type');
-var toFrom = document.querySelector('#tofrom');
-var details = document.querySelector('#details');
-var amount = document.querySelector('#amount');
-form.addEventListener('submit', function (event) {
+const type = document.querySelector('#type');
+const toFrom = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+form.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log("Type: " + type.value);
-    console.log("toFrom: " + toFrom.value);
-    console.log("Details: " + details.value);
-    console.log("Amount: " + amount.valueAsNumber);
+    console.log(`Type: ${type.value}`);
+    console.log(`toFrom: ${toFrom.value}`);
+    console.log(`Details: ${details.value}`);
+    console.log(`Amount: ${amount.valueAsNumber}`);
 });
 // =====================
 // Classes in Typescript
 // =====================
-var Invoice = /** @class */ (function () {
-    function Invoice(client, details, amount) {
-        this.client = client;
-        this.details = details;
-        this.amount = amount;
-    }
-    Invoice.prototype.format = function () {
-        return this.client + " owes $" + this.amount + " for " + this.details + ".";
-    };
-    return Invoice;
-}());
-var invoice1 = new Invoice('Steve', 'Work on website', 200);
-var invoice2 = new Invoice('Kuvra', 'Work on lunch', 300);
+const invoice1 = new Invoice('Steve', 'Work on website', 200);
+const invoice2 = new Invoice('Kuvra', 'Work on lunch', 300);
 console.log(invoice1, invoice2);
 // If we wanted to collect all of our invoices into an array,
 // we can ensure that only Invoice class objects are allowed in the array
-var invoices = [];
+let invoices = [];
 // This will not work because we are pushing a string into the invoices array
 // invoices.push('hello'); // Argument of type 'string' is not assignable to parameter of type 'Invoice'.
-var invoice3 = new Invoice('Scout', 'Work on lunch', 150);
+const invoice3 = new Invoice('Scout', 'Work on lunch', 150);
 invoices.push(invoice1);
 invoices.push(invoice2);
 invoices.push(invoice3);
@@ -74,29 +63,28 @@ console.log(invoices);
 //
 // By default, all attributes in a class are public
 // This means they can be read and modified from either inside or outside of the class
-var Person = /** @class */ (function () {
+class Person {
     // When using class modifiers, we can refactor the attributes to be shorter
     // public firstName: string;
     // public lastName: string;
     // private age: number;
     // readonly canDrink: boolean;
-    function Person(firstName, lastName, age, canDrink) {
+    constructor(firstName, lastName, age, canDrink) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.canDrink = canDrink;
     }
-    Person.prototype.fullName = function () {
-        return this.firstName + " " + this.lastName;
-    };
-    Person.prototype.format = function () {
+    fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    format() {
         // We can't change the value of this.canDrink because the property is set to readonly
         // this.canDrink = false; // Cannot assign to 'canDrink' because it is a read-only property.
-        return this.fullName() + " " + (this.age >= 21 ? 'can drink' : "can't drink") + "!";
-    };
-    return Person;
-}());
-var steve = new Person('Steve', 'Torrence', 31, true);
+        return `${this.fullName()} ${this.age >= 21 ? 'can drink' : "can't drink"}!`;
+    }
+}
+const steve = new Person('Steve', 'Torrence', 31, true);
 // If we try to call the private method fullName() outside of the class, we get an error
 // It can only be used inside of the class, like inside of the format() method
 // console.log(steve.fullName()); // Property 'fullName' is private and only accessible within class 'Person'.
