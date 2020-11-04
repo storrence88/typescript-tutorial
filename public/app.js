@@ -1,5 +1,15 @@
 import { Invoice } from './classes/Invoice.js';
 import { Person } from './classes/Person.js';
+import { Payment } from './classes/Payment.js';
+let docOne;
+let docTwo;
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payment('mario', 'plumbing', 350);
+let docs = [];
+docs.push(docOne);
+docs.push(docTwo);
+console.log(docOne);
+console.log(docTwo);
 // ================
 // DOM Manipulation
 // ================
@@ -56,7 +66,7 @@ invoices.push(invoice2);
 invoices.push(invoice3);
 console.log(invoices);
 // If we decide to change the values in the object later, our established types still hold true
-invoice1.client = 'Mere';
+// invoice1.client = 'Mere';
 invoice2.amount = 500;
 console.log(invoices);
 //
@@ -80,6 +90,7 @@ const scout = {
 };
 scout.speak('Woof!');
 // We can have multiple different types of isDog objects
+// We can also ensure that only a certain type of object gets passed into methods
 const greetDog = (dog) => {
     console.log('Hello', dog.name);
 };
