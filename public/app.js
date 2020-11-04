@@ -1,4 +1,5 @@
 import { Invoice } from './classes/Invoice.js';
+import { Person } from './classes/Person.js';
 // ================
 // DOM Manipulation
 // ================
@@ -61,31 +62,25 @@ console.log(invoices);
 //
 // Public, Private, and Readonly Class Modifiers
 //
-// By default, all attributes in a class are public
-// This means they can be read and modified from either inside or outside of the class
-class Person {
-    // When using class modifiers, we can refactor the attributes to be shorter
-    // public firstName: string;
-    // public lastName: string;
-    // private age: number;
-    // readonly canDrink: boolean;
-    constructor(firstName, lastName, age, canDrink) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.canDrink = canDrink;
-    }
-    fullName() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-    format() {
-        // We can't change the value of this.canDrink because the property is set to readonly
-        // this.canDrink = false; // Cannot assign to 'canDrink' because it is a read-only property.
-        return `${this.fullName()} ${this.age >= 21 ? 'can drink' : "can't drink"}!`;
-    }
-}
 const steve = new Person('Steve', 'Torrence', 31, true);
 // If we try to call the private method fullName() outside of the class, we get an error
 // It can only be used inside of the class, like inside of the format() method
 // console.log(steve.fullName()); // Property 'fullName' is private and only accessible within class 'Person'.
 console.log(steve.format());
+// So now if we create an object that is of type isDog, it must have those properties and those methods
+const scout = {
+    name: 'Scout',
+    age: 8,
+    speak(text) {
+        console.log(text);
+    },
+    count(number) {
+        return number;
+    }
+};
+scout.speak('Woof!');
+// We can have multiple different types of isDog objects
+const greetDog = (dog) => {
+    console.log('Hello', dog.name);
+};
+greetDog(scout);
