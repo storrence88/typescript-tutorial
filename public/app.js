@@ -1,15 +1,15 @@
 import { Invoice } from './classes/Invoice.js';
 import { Person } from './classes/Person.js';
 import { Payment } from './classes/Payment.js';
-let docOne;
-let docTwo;
-docOne = new Invoice('yoshi', 'web work', 250);
-docTwo = new Payment('mario', 'plumbing', 350);
-let docs = [];
-docs.push(docOne);
-docs.push(docTwo);
-console.log(docOne);
-console.log(docTwo);
+// let docOne: HasFormatter;
+// let docTwo: HasFormatter;
+// docOne = new Invoice('yoshi', 'web work', 250);
+// docTwo = new Payment('mario', 'plumbing', 350);
+// let docs: HasFormatter[] = [];
+// docs.push(docOne);
+// docs.push(docTwo);
+// console.log(docOne);
+// console.log(docTwo);
 // ================
 // DOM Manipulation
 // ================
@@ -44,10 +44,14 @@ const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log(`Type: ${type.value}`);
-    console.log(`toFrom: ${toFrom.value}`);
-    console.log(`Details: ${details.value}`);
-    console.log(`Amount: ${amount.valueAsNumber}`);
+    let doc;
+    if (type.value === 'invoice') {
+        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
 });
 // =====================
 // Classes in Typescript

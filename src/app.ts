@@ -3,18 +3,18 @@ import { Person } from './classes/Person.js';
 import { Payment } from './classes/Payment.js';
 import { HasFormatter } from './interfaces/HasFormatter';
 
-let docOne: HasFormatter;
-let docTwo: HasFormatter;
+// let docOne: HasFormatter;
+// let docTwo: HasFormatter;
 
-docOne = new Invoice('yoshi', 'web work', 250);
-docTwo = new Payment('mario', 'plumbing', 350);
+// docOne = new Invoice('yoshi', 'web work', 250);
+// docTwo = new Payment('mario', 'plumbing', 350);
 
-let docs: HasFormatter[] = [];
-docs.push(docOne);
-docs.push(docTwo);
+// let docs: HasFormatter[] = [];
+// docs.push(docOne);
+// docs.push(docTwo);
 
-console.log(docOne);
-console.log(docTwo);
+// console.log(docOne);
+// console.log(docTwo);
 
 // ================
 // DOM Manipulation
@@ -60,10 +60,16 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 
 form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
-  console.log(`Type: ${type.value}`);
-  console.log(`toFrom: ${toFrom.value}`);
-  console.log(`Details: ${details.value}`);
-  console.log(`Amount: ${amount.valueAsNumber}`);
+
+  let doc: HasFormatter;
+
+  if (type.value === 'invoice') {
+    doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+  } else {
+    doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+  }
+
+  console.log(doc);
 });
 
 // =====================
