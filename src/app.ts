@@ -1,5 +1,20 @@
 import { Invoice } from './classes/Invoice.js';
 import { Person } from './classes/Person.js';
+import { Payment } from './classes/Payment.js';
+import { HasFormatter } from './interfaces/HasFormatter';
+
+// let docOne: HasFormatter;
+// let docTwo: HasFormatter;
+
+// docOne = new Invoice('yoshi', 'web work', 250);
+// docTwo = new Payment('mario', 'plumbing', 350);
+
+// let docs: HasFormatter[] = [];
+// docs.push(docOne);
+// docs.push(docTwo);
+
+// console.log(docOne);
+// console.log(docTwo);
 
 // ================
 // DOM Manipulation
@@ -45,10 +60,16 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 
 form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
-  console.log(`Type: ${type.value}`);
-  console.log(`toFrom: ${toFrom.value}`);
-  console.log(`Details: ${details.value}`);
-  console.log(`Amount: ${amount.valueAsNumber}`);
+
+  let doc: HasFormatter;
+
+  if (type.value === 'invoice') {
+    doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+  } else {
+    doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+  }
+
+  console.log(doc);
 });
 
 // =====================
@@ -74,7 +95,7 @@ invoices.push(invoice3);
 console.log(invoices);
 
 // If we decide to change the values in the object later, our established types still hold true
-invoice1.client = 'Mere';
+// invoice1.client = 'Mere';
 invoice2.amount = 500;
 
 console.log(invoices);
@@ -122,6 +143,7 @@ const scout: isDog = {
 scout.speak('Woof!');
 
 // We can have multiple different types of isDog objects
+// We can also ensure that only a certain type of object gets passed into methods
 
 const greetDog = (dog: isDog) => {
   console.log('Hello', dog.name);
